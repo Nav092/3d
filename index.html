@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Model Viewer with Ambient Lighting</title>
+    <title>3D Model Viewer with Light Blue Color</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@latest"></script>
 </head>
-<body>
+<body style="background-color: lightblue;">
+
     <a href="#" id="view-3d-model" onclick="open3DModelModal(); return false;">
         <strong>View 3D Model</strong>
     </a>
@@ -24,10 +25,10 @@
                     <model-viewer id="modelViewer" 
                         src="GP1000-A00.glb" 
                         alt="3D Model"
-                        camera-controls                
-                        shadow-intensity="0.5" 
+                        camera-controls
+                        shadow-intensity="0.4" 
                         shadow-softness="1"  
-                        exposure="1.5"       
+                        exposure="1.3"       
                         style="width: 100%; height: 500px;">
                     </model-viewer>
                 </div>
@@ -58,16 +59,16 @@
             var modelViewer = document.getElementById('modelViewer');
             
             // Reset lighting and filter effects
-            modelViewer.style.setProperty('background-color', 'transparent');
+            modelViewer.style.setProperty('background-color', 'lightblue');  // Set background color to light blue
             modelViewer.style.setProperty('filter', 'none');
             
             if (viewMode === 'solid') {
-                // Solid view with enhanced ambient lighting
+                // Apply solid view with light blue tint and ambient light
                 modelViewer.style.setProperty('filter', 'none');
-                modelViewer.style.setProperty('background-color', 'transparent');
-                modelViewer.shadowIntensity = 0.5;  // Softer shadows
-                modelViewer.shadowSoftness = 1;  // Soft shadows to mimic ambient light
-                modelViewer.exposure = 1.5;      // Increase exposure for better visibility
+                modelViewer.style.setProperty('background-color', 'lightblue');  // Keep background light blue
+                modelViewer.shadowIntensity = 0.4;  // Softer shadows for a gentle light effect
+                modelViewer.shadowSoftness = 1;  // Soft shadows to avoid harsh contrasts
+                modelViewer.exposure = 1.3;  // Increase exposure for brighter visibility
             }
         }
     </script>
