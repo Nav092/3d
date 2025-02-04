@@ -62,13 +62,13 @@
             var modelViewer = document.getElementById('modelViewer');
             
             // Reset lighting and filter effects
-            modelViewer.style.setProperty('background-color', 'transparent');
+            modelViewer.style.setProperty('background-color', 'grey');
             modelViewer.style.setProperty('filter', 'none');
             
             if (viewMode === 'solid') {
                 // Apply solid view with ambient lighting effect
                 modelViewer.style.setProperty('filter', 'none');
-                modelViewer.style.setProperty('background-color', 'transparent');
+                modelViewer.style.setProperty('background-color', 'grey');
                 modelViewer.shadowIntensity = 0.5;  
                 modelViewer.shadowSoftness = 1;    
                 modelViewer.exposure = 1.3;         
