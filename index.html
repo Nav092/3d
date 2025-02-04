@@ -27,8 +27,8 @@
                         alt="3D Model"
                         camera-controls
                         shadow-intensity="0.4" 
-                        shadow-softness="1"  
-                        exposure="1.3"       
+                        shadow-softness="2"  
+                        exposure="1.5"       
                         style="width: 100%; height: 500px;">
                     </model-viewer>
                 </div>
@@ -65,10 +65,10 @@
             if (viewMode === 'solid') {
                 // Apply solid view with light blue tint and ambient light
                 modelViewer.style.setProperty('filter', 'none');
-                modelViewer.style.setProperty('background-color', 'lightblue');  // Keep background light blue
-                modelViewer.shadowIntensity = 0.4;  // Softer shadows for a gentle light effect
-                modelViewer.shadowSoftness = 1;  // Soft shadows to avoid harsh contrasts
-                modelViewer.exposure = 1.3;  // Increase exposure for brighter visibility
+                modelViewer.style.setProperty('background-color', 'lightblue');  
+                modelViewer.shadowIntensity = 0.4;  
+                modelViewer.shadowSoftness = 2;  
+                modelViewer.exposure = 1.5;  
             }
         }
     </script>
