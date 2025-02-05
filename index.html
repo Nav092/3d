@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Model- extra zoom</title>
+    <title>3D Model - Toggle Color</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/three@0.135.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.135.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -30,7 +30,7 @@
                     </a>
 
                     <div class="view-buttons">
-                        <button class="btn btn-primary btn-sm" onclick="toggleView('solid')">Solid View</button>
+                        <button class="btn btn-primary btn-sm" onclick="toggleView()">Toggle Solid View</button>
                     </div>
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -52,6 +52,9 @@
         let targetRotationY = 0;
         let smoothRotationX = 0;
         let smoothRotationY = 0;
+
+        let isSolidView = false; // Flag to toggle between solid view and original view
+        let originalMaterial = null;
 
         function open3DModelModal() {
             var modal = new bootstrap.Modal(document.getElementById('3dModelModal'));
@@ -104,7 +107,7 @@
                 // Store the original materials to be used in the solid view
                 model.traverse((child) => {
                     if (child.isMesh) {
-                        child.originalMaterial = child.material;
+                        child.originalMaterial = child.material; // Store original material
                     }
                 });
 
@@ -149,7 +152,7 @@
             isMouseDown = false;
         }
 
-// Handle zoom using the mouse wheel with smooth effect
+        // Handle zoom using the mouse wheel with smooth effect
         function onMouseWheel(event) {
             if (event.deltaY < 0) {
                 camera.position.z -= zoomSpeed;
@@ -161,20 +164,23 @@
             camera.lookAt(model.position);
         }
 
-
-
-        // Toggle view modes
-        function toggleView(view) {
+        // Toggle between solid view and original material
+        function toggleView() {
             if (!model) return;
+
+            isSolidView = !isSolidView; // Toggle the view flag
 
             model.traverse((child) => {
                 if (child.isMesh) {
-                    if (view === 'solid') {
-                        // Apply smooth shading for solid view
+                    if (isSolidView) {
+                        // Apply solid view material
                         child.material = new THREE.MeshStandardMaterial({
                             color: 0x888888,
                             flatShading: false // Use smooth shading
                         });
+                    } else {
+                        // Revert back to original material
+                        child.material = child.originalMaterial;
                     }
                 }
             });
