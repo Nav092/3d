@@ -183,18 +183,12 @@
             isMouseDown = false;
         }
 
-        let minZoom = 1;
-        let maxZoom = 5;
-        function onMouseWheel(event) {
-            event.preventDefault();
-
+       function onMouseWheel(event) {
             if (event.deltaY < 0) {
-                camera.position.z -= zoomSpeed;
+                camera.position.z -= 0.1;  
             } else {
-                camera.position.z += zoomSpeed;
+                camera.position.z += 0.1;  
             }
-
-            camera.position.z = Math.max(minZoom, Math.min(maxZoom, camera.position.z));
         }
 
         function toggleView() {
